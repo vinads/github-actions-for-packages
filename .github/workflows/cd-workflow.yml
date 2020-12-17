@@ -29,6 +29,9 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
+          registry-url: 'https://npm.pkg.github.com'
+          #scope Defaults to the user or organization that owns the workflow file
+          #scope: '@vinads'
       - uses: actions/download-artifact@master
         with:
           name: webpack artifacts
@@ -39,8 +42,23 @@ jobs:
           npm test
         env:
           CI: true
-          
-          
+  
+  
+  
+  publish:
+    runs-on: ubuntu-latest
+    needs: test
+    steps:
+        - uses: actions/download-artifact@master
+          with:
+            name: webpack artifacts
+            path: public
+        - run: npm publish
+          env: 
+            NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        
+        
+        
   Build-and-Push-Docker-Image:
     runs-on: ubuntu-latest
     needs: test

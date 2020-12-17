@@ -55,7 +55,7 @@ jobs:
           with:
             registry-url: 'https://npm.pkg.github.com'
             #scope Defaults to the user or organization that owns the workflow file
-            #scope: '@vinads'
+            scope: '@vinads'
         - uses: actions/download-artifact@master
           with:
             name: webpack artifacts

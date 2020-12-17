@@ -13,7 +13,7 @@ jobs:
           npm run build
       - uses: actions/upload-artifact@master
         with:
-          name: test/webpack artifacts
+          name: webpack artifacts
           path: public/
   test:
     runs-on: ubuntu-latest
@@ -31,7 +31,7 @@ jobs:
           node-version: ${{ matrix.node-version }}
       - uses: actions/download-artifact@master
         with:
-          name: test/webpack artifacts
+          name: webpack artifacts
           path: public
       - name: npm install, and test
         run: |
@@ -52,7 +52,7 @@ jobs:
     - name: Download built artifact
       uses: actions/download-artifact@master
       with:
-        name: test/webpack artifacts
+        name: webpack artifacts
         path: public
     - name: Build container image
       uses: docker/build-push-action@v1

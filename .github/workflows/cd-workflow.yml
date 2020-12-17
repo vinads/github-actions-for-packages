@@ -50,6 +50,12 @@ jobs:
     needs: test
     steps:
         - uses: actions/checkout@v1
+        - name: Use Node.js ${{ matrix.node-version }}
+          uses: actions/setup-node@v1
+          with:
+            registry-url: 'https://npm.pkg.github.com'
+            #scope Defaults to the user or organization that owns the workflow file
+            #scope: '@vinads'
         - uses: actions/download-artifact@master
           with:
             name: webpack artifacts

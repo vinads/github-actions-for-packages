@@ -29,9 +29,6 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
-          registry-url: 'https://npm.pkg.github.com'
-          #scope Defaults to the user or organization that owns the workflow file
-          #scope: '@vinads'
       - uses: actions/download-artifact@master
         with:
           name: webpack artifacts
@@ -49,18 +46,20 @@ jobs:
     runs-on: ubuntu-latest
     needs: test
     steps:
-        - uses: actions/checkout@v1
-        - name: Use Node.js ${{ matrix.node-version }}
-          uses: actions/setup-node@v1
-          with:
-            registry-url: 'https://npm.pkg.github.com'
-            #scope Defaults to the user or organization that owns the workflow file
-            scope: '@vinads'
         - uses: actions/download-artifact@master
           with:
             name: webpack artifacts
             path: public
-        - run: npm publish
+            
+        - uses: actions/setup-node@v1
+          with:
+            registry-url: https://npm.pkg.github.com/
+            #scope Defaults to the user or organization that owns the workflow file
+            scope: "@vinads"
+            
+        - run: echo "registry=https://npm.pkg.github.com/@vinads" >> .npmrc
+        
+        - run: npm publish $(ls)
           env: 
             NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         

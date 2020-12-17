@@ -1,5 +1,5 @@
 {
-  "name": "actions-template",
+  "name": "@vinads/actions-template",
   "version": "1.0.0",
   "description": "Learn how to use GitHub Actions!",
   "main": "index.js",

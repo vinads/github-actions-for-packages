@@ -7,6 +7,13 @@
     "test": "__test__",
     "src": "src"
   },
+  "publishConfig": { 
+            "registry": "https://npm.pkg.github.com/" 
+ },
+ "repository": {
+    "type": "git",
+    "url": "https://github.com/vinads/github-actions-for-packagese"
+  },
   "scripts": {
     "build": "npx webpack --config ./src/webpack.config.js --mode production",
     "dev": "npx webpack --config ./src/webpack.config.js --mode development --watch",

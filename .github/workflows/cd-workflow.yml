@@ -15,6 +15,10 @@ jobs:
         with:
           name: webpack artifacts
           path: public/
+      - uses: actions/upload-artifact@master
+        with:
+          name: package_json
+          path: package.json
   
   # test:
     # runs-on: ubuntu-latest
@@ -48,9 +52,6 @@ jobs:
     needs: build
     steps:
         - uses: actions/download-artifact@master
-          with:
-            name: webpack artifacts
-            path: public
             
         - uses: actions/setup-node@v1
           with:
@@ -60,7 +61,7 @@ jobs:
             scope: "@vinads"
             
         - run: echo "registry=https://npm.pkg.github.com/@vinads" >> .npmrc
-        
+       
         - run: npm publish $(ls)
           env: 
             NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

@@ -12,7 +12,7 @@
  },
  "repository": {
     "type": "git",
-    "url": "https://github.com/vinads/github-actions-for-packagese"
+    "url": "https://github.com/vinads/github-actions-for-packages"
   },
   "scripts": {
     "build": "npx webpack --config ./src/webpack.config.js --mode production",

@@ -17,7 +17,8 @@ jobs:
           path: public/
       - uses: actions/upload-artifact@master
         with:
-          path: package.json
+            name: package
+            path: package.json
   
   # test:
     # runs-on: ubuntu-latest
@@ -51,7 +52,7 @@ jobs:
     needs: build
     steps:
         - uses: actions/download-artifact@master
-            
+        - run: mv package/* .    
         - uses: actions/setup-node@v1
           with:
             node-version: 14.x
